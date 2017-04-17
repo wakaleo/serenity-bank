@@ -8,7 +8,7 @@ class WhenCreatingANewAccount extends Specification {
 
     final CURRENT_ACCOUNT_NUMBER = "100001"
 
-    def "the initial account balance should correspond to the amount initially deposited"() {
+    def "the initial account balance should correspond to the amount deposited"() {
         given:
             def accountService = new AccountService();
         when:

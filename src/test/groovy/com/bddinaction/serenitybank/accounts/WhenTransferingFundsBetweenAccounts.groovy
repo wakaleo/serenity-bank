@@ -19,6 +19,7 @@ class WhenTransferingFundsBetweenAccounts extends Specification {
         when:
             accountService.transferFunds(CURRENT_ACCOUNT_NUMBER,SAVINGS_ACCOUNT_NUMBER, 100)
         then:
-            accountService.getBalance(CURRENT_ACCOUNT_NUMBER) == 900.00 && accountService.getBalance(SAVINGS_ACCOUNT_NUMBER) == 1100.00
+            accountService.getBalance(CURRENT_ACCOUNT_NUMBER) == 900.00
+            accountService.getBalance(SAVINGS_ACCOUNT_NUMBER) == 1100.00
     }
 }

@@ -25,9 +25,10 @@ public class TransferFundsSteps {
         accountsByType = Maps.uniqueIndex(accounts, AccountDetails::getType);
 
         accounts.forEach(
-                account -> accountService.createNewAccount(account.getNumber(), account.getType(), account.getBalance())
+                account -> accountService.createNewAccount(account.getNumber(),
+                                                           account.getType(),
+                                                           account.getBalance())
         );
-
     }
 
     @When("^he transfers €(\\d+) from his (.*) account to his (.*) account$")

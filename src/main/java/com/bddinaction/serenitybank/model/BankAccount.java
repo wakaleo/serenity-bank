@@ -19,9 +19,9 @@ public class BankAccount {
         return number;
     }
 
-//    public AccountType getType() {
-//        return type;
-//    }
+    public AccountType getType() {
+        return type;
+    }
 
     public BigDecimal getBalance() {
         return balance;
