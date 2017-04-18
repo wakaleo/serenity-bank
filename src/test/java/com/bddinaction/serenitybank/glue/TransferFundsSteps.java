@@ -4,6 +4,7 @@ import com.bddinaction.serenitybank.accounts.AccountDetails;
 import com.bddinaction.serenitybank.accounts.AccountService;
 import com.bddinaction.serenitybank.model.AccountType;
 import com.google.common.collect.Maps;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -51,5 +52,13 @@ public class TransferFundsSteps {
         );
 
         softly.assertAll();
+    }
+
+    @When("^he deposits €(\\d+) into his (.*) account$")
+    public void heDepositsMoneyIntoHisCurrentAccount(BigDecimal amount,
+                                                     AccountType type) throws Throwable {
+
+        AccountDetails fromAccount = accountsByType.get(type);
+        accountService.makeDeposit(fromAccount.getNumber(), amount);
     }
 }

@@ -38,4 +38,9 @@ public class AccountService {
         BankAccount account = accounts.get(accountNumber);
         return account.getBalance();
     }
+
+    public void makeDeposit(String accountNumber, BigDecimal amount) {
+        BankAccount account = accounts.get(accountNumber);
+        account.deposit(amount);
+    }
 }
