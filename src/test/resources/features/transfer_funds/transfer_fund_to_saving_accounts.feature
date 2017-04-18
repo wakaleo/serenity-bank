@@ -7,7 +7,7 @@ Feature: Transfer funds to savings accounts
   There are two types of savings accounts: basic and fixed term.
   Deposits to fixed term accounts must be at least €1000
 
-  Scenario: Tranfer funds to a basic savings account
+  Scenario: Transfer funds to a basic savings account
     Given Joe has the following accounts:
       | Number | Type         | Balance |
       | 123456 | Current      | 1000    |
