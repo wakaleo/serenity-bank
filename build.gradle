@@ -1,0 +1,53 @@
+apply plugin: "java"
+apply plugin: "groovy"
+apply plugin: "net.serenity-bdd.aggregator"
+
+version = "1.0"
+description = "Sample project for the BDD in Action Masterclass"
+
+sourceCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+
+buildscript {
+    project.ext {
+        serenityVersion = '1.2.5-rc.5'
+        serenityCucumberVersion = '1.1.29'
+    }
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("net.serenity-bdd:serenity-gradle-plugin:${serenityVersion}")
+    }
+}
+
+dependencies {
+    // mandatory dependencies for using Spock
+    compile "org.codehaus.groovy:groovy-all:2.4.7"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.1.0"
+    testCompile "org.hamcrest:hamcrest-core:1.3"   // only necessary if Hamcrest matchers are used
+
+    testRuntime "cglib:cglib-nodep:3.2.4"          // allows mocking of classes (in addition to interfaces)
+    testRuntime "org.objenesis:objenesis:2.5.1"    // allows mocking of classes without default constructor (together with CGLIB)
+
+    // Serenity dependencies
+    testCompile "net.serenity-bdd:serenity-core:${serenityVersion}"
+    testCompile "net.serenity-bdd:serenity-junit:${serenityVersion}"
+    testCompile "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}"
+
+}
