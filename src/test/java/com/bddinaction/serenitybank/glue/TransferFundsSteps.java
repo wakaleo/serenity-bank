@@ -57,7 +57,6 @@ public class TransferFundsSteps {
     @When("^he deposits €(\\d+) into his (.*) account$")
     public void heDepositsMoneyIntoHisCurrentAccount(BigDecimal amount,
                                                      AccountType type) throws Throwable {
-
         AccountDetails fromAccount = accountsByType.get(type);
         accountService.makeDeposit(fromAccount.getNumber(), amount);
     }
