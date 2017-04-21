@@ -9,11 +9,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.core.api.SoftAssertions;
+import org.assertj.core.data.Percentage;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.assertj.core.data.Percentage.withPercentage;
 
 public class TransferFundsSteps {
 
@@ -47,7 +50,7 @@ public class TransferFundsSteps {
 
         accounts.forEach(
                 account -> {
-                    softly.assertThat(accountService.getBalance(account.getNumber())).isEqualTo(account.getBalance());
+                    softly.assertThat(accountService.getBalance(account.getNumber())).isCloseTo(account.getBalance(), withPercentage(0.0));
                 }
         );
 

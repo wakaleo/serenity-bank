@@ -1,5 +1,6 @@
 package com.bddinaction.serenitybank.accounts;
 
+import com.bddinaction.serenitybank.deposits.DepositFee;
 import com.bddinaction.serenitybank.model.AccountType;
 import com.bddinaction.serenitybank.model.BankAccount;
 
@@ -42,5 +43,6 @@ public class AccountService {
     public void makeDeposit(String accountNumber, BigDecimal amount) {
         BankAccount account = accounts.get(accountNumber);
         account.deposit(amount);
+        account.withdraw(DepositFee.forAccountType(account.getType()).apply(amount));
     }
 }
