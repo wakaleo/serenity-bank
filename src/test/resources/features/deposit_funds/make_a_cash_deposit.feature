@@ -15,24 +15,14 @@ Feature: Make a cash deposit
       | Number | Type    | Balance |
       | 123456 | Current | 1100    |
 
-  Scenario: Deposit into a basic savings account
+  Scenario Outline: Small deposits into savings accounts
   For all savings accounts, there is a €0.50 fee up to €100.
 
-    Given Joe has the following accounts:
-      | Number | Type         | Balance |
-      | 123456 | BasicSavings | 1000    |
-    When he deposits €50 into his BasicSavings account
-    Then he should have the following balances:
-      | Number | Type         | Balance |
-      | 123456 | BasicSavings | 1049.50 |
+    Given Joe has a <account-type> account with a balance of €<balance>
+    When he deposits €<deposit> into his account
+    Then his account should have a balance of €<final-balance>
+    Examples:
+      | account-type | balance | deposit | final-balance |
+      | BasicSavings | 1000    | 50      | 1049.50       |
+      | BigSaver     | 1000    | 100     | 1099.50       |
 
-  Scenario: Deposit into a super savings account
-  For all savings accounts, there is a €0.50 fee up to €100.
-
-    Given Joe has the following accounts:
-      | Number | Type     | Balance |
-      | 123456 | BigSaver | 1000    |
-    When he deposits €100 into his BigSaver account
-    Then he should have the following balances:
-      | Number | Type     | Balance |
-      | 123456 | BigSaver | 1099.50 |
