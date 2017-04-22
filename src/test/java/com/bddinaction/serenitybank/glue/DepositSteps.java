@@ -37,6 +37,7 @@ public class DepositSteps {
     @When("^he deposits €(\\d+) into his account on (.*)$")
     public void he_deposits_into_his_account(BigDecimal deposit,
                                              Date transactionDate) throws Throwable {
+        accountService.makeDeposit(accountNumber, deposit);
     }
 
     @When("^he withdraws €(\\d+) from his account on (.*)$")
