@@ -26,7 +26,7 @@ Feature: Make a cash deposit
       | BasicSavings | 1000    | 50      | 1049.50       |
       | BigSaver     | 1000    | 100     | 1099.50       |
 
-  Scenario Outline: Larger deposits into savings accounts
+  Scenario Outline: Medium deposits into savings accounts
   There is a €0.75 fee for big saver accounts and a €1.00 for basic saver accounts
 
     Given Joe has a <account-type> account with a balance of €<balance>
@@ -38,3 +38,15 @@ Feature: Make a cash deposit
       | BigSaver     | 1000    | 500     | 1499.25       |
       | BasicSavings | 1000    | 1000    | 1999.00       |
       | BigSaver     | 1000    | 1000    | 1999.25       |
+
+
+  Scenario Outline: Large deposits into savings accounts
+  There is a €1.25 fee for all savings deposits over €1000
+
+    Given Joe has a <account-type> account with a balance of €<balance>
+    When he deposits €<deposit> into his account
+    Then his account should have a balance of €<final-balance>
+    Examples:
+      | account-type | balance | deposit | final-balance |
+      | BasicSavings | 1000    | 1500    | 2498.75       |
+      | BigSaver     | 1000    | 1500    | 2498.75       |
