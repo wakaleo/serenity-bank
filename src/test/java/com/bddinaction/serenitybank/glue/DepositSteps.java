@@ -35,14 +35,15 @@ public class DepositSteps {
     }
 
     @When("^he deposits €(\\d+) into his account on (.*)$")
-    public void he_deposits_into_his_account(BigDecimal deposit,
+    public void he_deposits_into_his_account(BigDecimal amount,
                                              Date transactionDate) throws Throwable {
-        accountService.makeDeposit(accountNumber, deposit);
+        accountService.makeDeposit(accountNumber, amount);
     }
 
     @When("^he withdraws €(\\d+) from his account on (.*)$")
-    public void he_withdraws_from_his_account(BigDecimal deposit,
-                                              Date transactionDate) throws Throwable {
+    public void he_withdraws_from_his_account(BigDecimal amount,
+                                              LocalDate transactionDate) throws Throwable {
+        accountService.makeWithdrawal(accountNumber, amount, transactionDate);
     }
 
     @Then("^his transaction history should include:$")

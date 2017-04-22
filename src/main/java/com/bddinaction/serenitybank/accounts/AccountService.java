@@ -4,8 +4,10 @@ import com.bddinaction.serenitybank.deposits.DepositFee;
 import com.bddinaction.serenitybank.model.AccountType;
 import com.bddinaction.serenitybank.model.BankAccount;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -57,5 +59,11 @@ public class AccountService {
     public String createNewAccount(AccountType accountType, BigDecimal initialBalance) {
         String accountNumber = Integer.toString(accountNumberCounter.incrementAndGet());
         return createNewAccount(accountNumber, accountType, initialBalance);
+    }
+
+    public void makeWithdrawal(String accountNumber,
+                               BigDecimal amount,
+                               LocalDate transactionDate) {
+
     }
 }
