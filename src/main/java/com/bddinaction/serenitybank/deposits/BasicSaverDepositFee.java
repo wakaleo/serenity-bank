@@ -5,10 +5,18 @@ import java.util.function.Function;
 
 public class BasicSaverDepositFee implements Function<BigDecimal, BigDecimal> {
 
-    private static BigDecimal BASIC_SAVER_RATE = new BigDecimal("0.50");
+    private static BigDecimal SMALL_SAVER_RATE = new BigDecimal("0.50");
+    private static BigDecimal MEDIUM_SAVER_RATE = new BigDecimal("1.00");
 
     @Override
     public BigDecimal apply(BigDecimal amount) {
-        return BASIC_SAVER_RATE;
+        if (isSmallDeposit(amount)) {
+            return SMALL_SAVER_RATE;
+        }
+        return MEDIUM_SAVER_RATE;
+    }
+
+    private boolean isSmallDeposit(BigDecimal amount) {
+        return amount.compareTo(new BigDecimal("100.00")) <= 0;
     }
 }
