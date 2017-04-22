@@ -7,6 +7,7 @@ import com.bddinaction.serenitybank.model.BankAccount;
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static com.bddinaction.serenitybank.accounts.AccountOrdering.firstOf;
 import static com.bddinaction.serenitybank.accounts.AccountOrdering.lastOf;
@@ -14,6 +15,8 @@ import static com.bddinaction.serenitybank.accounts.AccountOrdering.lastOf;
 public class AccountService {
 
     Map<String, BankAccount> accounts = new ConcurrentHashMap<>();
+
+    AtomicInteger accountNumberCounter = new AtomicInteger();
 
     public String createNewAccount(String accountNumber, AccountType type, BigDecimal initialDeposit) {
         BankAccount newAccount = new BankAccount(accountNumber,type);
@@ -44,5 +47,10 @@ public class AccountService {
         BankAccount account = accounts.get(accountNumber);
         account.deposit(amount);
         account.withdraw(DepositFee.forAccountType(account.getType()).apply(amount));
+    }
+
+    public String createNewAccount(AccountType accountType, BigDecimal initialBalance) {
+        String accountNumber = Integer.toString(accountNumberCounter.incrementAndGet());
+        return createNewAccount(accountNumber, accountType, initialBalance);
     }
 }
