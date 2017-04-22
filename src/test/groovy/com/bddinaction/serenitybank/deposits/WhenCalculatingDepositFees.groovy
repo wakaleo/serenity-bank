@@ -1,4 +1,4 @@
-package com.bddinaction.serenitybank.accounts.model
+package com.bddinaction.serenitybank.deposits
 
 import com.bddinaction.serenitybank.accounts.AccountService
 import com.bddinaction.serenitybank.deposits.DepositFee
