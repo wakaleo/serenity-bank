@@ -3,6 +3,8 @@ package com.bddinaction.serenitybank.glue;
 import com.bddinaction.serenitybank.accounts.AccountService;
 import com.bddinaction.serenitybank.model.AccountType;
 import cucumber.api.DataTable;
+import cucumber.api.Format;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -36,18 +38,19 @@ public class DepositSteps {
 
     @When("^he deposits €(\\d+) into his account on (.*)$")
     public void he_deposits_into_his_account(BigDecimal amount,
-                                             Date transactionDate) throws Throwable {
-        accountService.makeDeposit(accountNumber, amount);
+                                             @Format("dd/MM/yyyy") Date transactionDate) throws Throwable {
+        accountService.makeDeposit(accountNumber, amount, new LocalDate(transactionDate));
     }
 
     @When("^he withdraws €(\\d+) from his account on (.*)$")
     public void he_withdraws_from_his_account(BigDecimal amount,
-                                              LocalDate transactionDate) throws Throwable {
-        accountService.makeWithdrawal(accountNumber, amount, transactionDate);
+                                              @Format("dd/MM/yyyy") Date transactionDate) throws Throwable {
+        accountService.makeWithdrawal(accountNumber, amount, new LocalDate(transactionDate));
     }
 
     @Then("^his transaction history should include:$")
     public void his_transaction_history_should_include(DataTable transactions) throws Throwable {
+        throw new PendingException();
     }
 
 }

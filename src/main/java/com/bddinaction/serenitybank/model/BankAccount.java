@@ -40,6 +40,10 @@ public class BankAccount {
     }
 
     public void withdraw(BigDecimal amount) {
+        withdraw(amount, LocalDate.now());
+    }
+
+    public void withdraw(BigDecimal amount, LocalDate date) {
         synchronized (lock) {
             balance = balance.subtract(amount);
         }

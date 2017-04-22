@@ -63,7 +63,9 @@ public class AccountService {
 
     public void makeWithdrawal(String accountNumber,
                                BigDecimal amount,
-                               LocalDate transactionDate) {
+                               LocalDate date) {
+        BankAccount account = accounts.get(accountNumber);
+        account.withdraw(amount, date);
 
     }
 }
