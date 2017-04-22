@@ -3,6 +3,7 @@ package com.bddinaction.serenitybank.accounts;
 import com.bddinaction.serenitybank.deposits.DepositFee;
 import com.bddinaction.serenitybank.model.AccountType;
 import com.bddinaction.serenitybank.model.BankAccount;
+import org.joda.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class AccountService {
 
     public String createNewAccount(String accountNumber, AccountType type, BigDecimal initialDeposit) {
         BankAccount newAccount = new BankAccount(accountNumber,type);
-        newAccount.deposit(initialDeposit);
+        newAccount.deposit(initialDeposit, LocalDate.now());
         accounts.put(accountNumber, newAccount);
         return accountNumber;
     }
@@ -33,7 +34,7 @@ public class AccountService {
         synchronized (firstOf(fromAccount, toAccount)) {
             synchronized (lastOf(fromAccount, toAccount)) {
                 fromAccount.withdraw(amount);
-                toAccount.deposit(amount);
+                toAccount.deposit(amount,  LocalDate.now());
             }
         }
     }
@@ -44,8 +45,12 @@ public class AccountService {
     }
 
     public void makeDeposit(String accountNumber, BigDecimal amount) {
+        makeDeposit(accountNumber, amount, LocalDate.now());
+    }
+
+    public void makeDeposit(String accountNumber, BigDecimal amount, LocalDate date) {
         BankAccount account = accounts.get(accountNumber);
-        account.deposit(amount);
+        account.deposit(amount, date);
         account.withdraw(DepositFee.forAccountType(account.getType()).apply(amount));
     }
 

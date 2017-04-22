@@ -1,5 +1,7 @@
 package com.bddinaction.serenitybank.model;
 
+import org.joda.time.LocalDate;
+
 import java.math.BigDecimal;
 
 public class BankAccount {
@@ -28,6 +30,10 @@ public class BankAccount {
     }
 
     public void deposit(BigDecimal amount) {
+        deposit(amount, LocalDate.now());
+    }
+
+    public void deposit(BigDecimal amount, LocalDate date) {
         synchronized (lock) {
             balance = balance.add(amount);
         }
