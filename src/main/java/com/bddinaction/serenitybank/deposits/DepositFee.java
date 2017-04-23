@@ -7,9 +7,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.function.Function;
 
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings;
-import static com.bddinaction.serenitybank.model.AccountType.BigSaver;
-import static com.bddinaction.serenitybank.model.AccountType.Current;
+import static com.bddinaction.serenitybank.model.AccountType.*;
 import static java.math.BigDecimal.ZERO;
 
 public class DepositFee {

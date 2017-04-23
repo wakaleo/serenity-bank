@@ -1,6 +1,5 @@
-package com.bddinaction.serenitybank.accounts.model
+package com.bddinaction.serenitybank.accounts
 
-import com.bddinaction.serenitybank.accounts.AccountService
 import org.joda.time.LocalDate
 import spock.lang.Specification
 

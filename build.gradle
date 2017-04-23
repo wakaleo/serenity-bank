@@ -16,7 +16,6 @@ repositories {
     mavenCentral()
 }
 
-
 buildscript {
     project.ext {
         serenityVersion = '1.2.5-rc.5'
@@ -34,6 +33,9 @@ buildscript {
 }
 
 dependencies {
+    compile "joda-time:joda-time:2.9.9"
+    compile 'com.google.guava:guava:21.0'
+
     // mandatory dependencies for using Spock
     compile "org.codehaus.groovy:groovy-all:2.4.7"
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-3"
@@ -49,5 +51,4 @@ dependencies {
     testCompile "net.serenity-bdd:serenity-core:${serenityVersion}"
     testCompile "net.serenity-bdd:serenity-junit:${serenityVersion}"
     testCompile "net.serenity-bdd:serenity-cucumber:${serenityCucumberVersion}"
-
 }

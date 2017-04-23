@@ -1,20 +1,9 @@
 package com.bddinaction.serenitybank.deposits
 
-import com.bddinaction.serenitybank.accounts.AccountService
-import com.bddinaction.serenitybank.deposits.DepositFee
-import com.bddinaction.serenitybank.model.AccountType
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BasicSavings
-import static com.bddinaction.serenitybank.model.AccountType.BigSaver
-import static com.bddinaction.serenitybank.model.AccountType.Current
-import static com.bddinaction.serenitybank.model.AccountType.Current
+import static com.bddinaction.serenitybank.model.AccountType.*
 
 class WhenCalculatingDepositFees extends Specification {
 

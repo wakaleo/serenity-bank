@@ -4,12 +4,10 @@ import com.bddinaction.serenitybank.accounts.AccountDetails;
 import com.bddinaction.serenitybank.accounts.AccountService;
 import com.bddinaction.serenitybank.model.AccountType;
 import com.google.common.collect.Maps;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.assertj.core.api.SoftAssertions;
-import org.assertj.core.data.Percentage;
 
 import java.math.BigDecimal;
 import java.util.HashMap;

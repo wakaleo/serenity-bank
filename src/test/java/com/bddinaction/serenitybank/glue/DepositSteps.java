@@ -1,10 +1,9 @@
 package com.bddinaction.serenitybank.glue;
 
 import com.bddinaction.serenitybank.accounts.AccountService;
+import com.bddinaction.serenitybank.accounts.model.Transaction;
 import com.bddinaction.serenitybank.model.AccountType;
-import cucumber.api.DataTable;
 import cucumber.api.Format;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,6 +11,7 @@ import org.joda.time.LocalDate;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.data.Percentage.withPercentage;
@@ -24,6 +24,13 @@ public class DepositSteps {
     @Given("^Joe has a (.*) account with a balance of €(.*)$")
     public void joe_has_an_account_with_a_balance(AccountType accountType, BigDecimal initialBalance) throws Throwable {
         accountNumber = accountService.createNewAccount(accountType,initialBalance);
+    }
+
+    @Given("^Joe opened a (.*) account on (.*) with a balance of €(.*)$")
+    public void joe_opened_an_account_with_a_balance(AccountType accountType,
+                                                     @Format("dd/MM/yyyy") Date openingDate,
+                                                     BigDecimal initialBalance) throws Throwable {
+        accountNumber = accountService.createNewAccount(accountType,initialBalance, new LocalDate(openingDate));
     }
 
     @When("^he deposits €(\\d+) into his account$")
@@ -49,8 +56,8 @@ public class DepositSteps {
     }
 
     @Then("^his transaction history should include:$")
-    public void his_transaction_history_should_include(DataTable transactions) throws Throwable {
-        throw new PendingException();
+    public void his_transaction_history_should_include(List<Transaction> transactions) throws Throwable {
+        assertThat(accountService.getTransactions(accountNumber)).isEqualTo(transactions);
     }
 
 }
